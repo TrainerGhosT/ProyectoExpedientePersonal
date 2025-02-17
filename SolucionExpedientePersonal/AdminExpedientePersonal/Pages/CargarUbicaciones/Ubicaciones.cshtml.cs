@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminExpedientePersonal.Pages.CargarUbicaciones
 {
-    public class CargarUbicacionesModel : PageModel
+    public class UbicacionesModel : PageModel
     {
         public void OnGet()
         {
