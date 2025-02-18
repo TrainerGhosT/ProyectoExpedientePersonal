@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AdminExpedientePersonal.Repository\AdminExpedientePersonal.Repository.csproj" />
+    <ProjectReference Include="..\AdminExpedientePersonal.Services\AdminExpedientePersonal.Services.csproj" />
+  </ItemGroup>
+
 </Project>

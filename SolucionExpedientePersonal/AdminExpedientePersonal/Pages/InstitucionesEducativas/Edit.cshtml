@@ -1,0 +1,50 @@
+﻿@page "{id:int}"
+@model InstitucionesEducativas.EditModel
+@{
+ViewData["Title"] = "Editar Institución";
+}
+
+<div class="container mt-4" style="max-width:600px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white text-primary">
+            <h5 class="mb-0">Editar Institución Educativa</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="Institucion.IdInstitucion" />
+
+                <div class="mb-3">
+                    <label asp-for="Institucion.Nombre" class="form-label fw-bold">Nombre</label>
+                    <input type="text" class="form-control" asp-for="Institucion.Nombre" placeholder="Ingrese el nombre"
+                           required maxlength="150" />
+                    <div class="form-text">Solo letras y espacios, máximo 150 caracteres.</div>
+                    <span class="text-danger" asp-validation-for="Institucion.Nombre"></span>
+                </div>
+
+                <!-- Pie con los botones -->
+                <div class="card-footer text-center d-flex flex-column">
+                    <button type="submit" class="btn btn-primary mb-2">
+                        <span id="btnText">Guardar</span>
+                        <span id="btnSpinner" class="spinner-border spinner-border-sm d-none"></span>
+                    </button>
+                    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.querySelector("form").addEventListener("submit", function () {
+        console.log("IdInstitucion:", document.querySelector("input[name='Institucion.IdInstitucion']").value);
+    });
+</script>
+@if (ViewData["Error"] != null)
+{
+<script>
+    Swal.fire('Error', '@ViewData["Error"]', 'error');
+</script>
+}
+}

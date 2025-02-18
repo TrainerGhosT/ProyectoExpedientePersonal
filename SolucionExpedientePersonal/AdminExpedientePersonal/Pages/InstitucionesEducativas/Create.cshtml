@@ -1,0 +1,71 @@
+﻿@page
+@model InstitucionesEducativas.CreateModel
+@{
+ViewData["Title"] = "Crear Institución";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg" style="max-width: 600px; width: 100%;">
+        <!-- Encabezado -->
+        <div class="card-header text-center bg-light text-primary">
+            <h5 class="mb-0">Administrar Instituciónes Educativas</h5>
+        </div>
+
+        <hr class="m-0"> <!-- Línea separadora -->
+
+        <!-- Cuerpo del formulario -->
+        <div class="card-body p-4">
+            <form method="post" id="createForm">
+                <div class="mb-3">
+                    <label for="Nombre" class="form-label fw-bold">Nombre</label>
+                    <input type="text" class="form-control" id="Nombre" name="Institucion.Nombre"
+                           placeholder="Ingrese el nombre" required maxlength="150">
+                    <div class="form-text">Solo letras y espacios, máximo 150 caracteres.</div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Pie con los botones -->
+        <div class="card-footer text-center d-flex flex-column">
+            <button type="submit" form="createForm" class="btn btn-primary mb-2" id="btnGuardar">
+                <span id="btnText">Guardar</span>
+                <span id="btnSpinner" class="spinner-border spinner-border-sm d-none"></span>
+            </button>
+            <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.getElementById("createForm").addEventListener("submit", function (event) {
+        let btnGuardar = document.getElementById("btnGuardar");
+        btnGuardar.disabled = true;
+        document.getElementById("btnText").classList.add("d-none");
+        document.getElementById("btnSpinner").classList.remove("d-none");
+    });
+
+    @if (ViewData["Success"] != null)
+    {
+    <text>
+    Swal.fire({
+        title: "Éxito",
+        text: "@ViewData["Success"]",
+        icon: "success",
+        confirmButtonText: "Aceptar"
+    }).then(() => {
+        window.location.href = "/InstitucionesEducativas/Index";
+    });
+    </text>
+    }
+
+    @if (ViewData["Error"] != null)
+    {
+    <text>
+    Swal.fire("Error", "@ViewData["Error"]", "error");
+    </text>
+    }
+</script>
+}
